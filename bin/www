@@ -1,0 +1,10 @@
+#!/usr/bin/env lsc
+
+debug = require \debug \sample
+require! \../app
+
+process.env.PORT or 3000 |> app .set \port _
+
+server = do
+  <-! app.listen app.get \port
+  'Express server listening on port ' + server .address! .port |> debug
